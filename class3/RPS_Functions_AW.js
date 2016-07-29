@@ -82,43 +82,59 @@ function playGame(ply1, ply2, playUntil){
 
   if (ply1.wins === playUntil) {
     console.log(ply1.name + ' is the GAME WINNER!');
+    return ply1;
   } else {
-    console.log(ply2.name + ' is the GAME WINNER');
+    console.log(ply2.name + ' is the GAME WINNER!');
+    return ply2;
   }
 }
 
 //playGame(player1, player2, 5);
 
-//declares a function to play a tournament of 4 players.  Winners of the first round, play another round against each other
+//build a tournament using the playGame function
+function playTournament(tournPly1, tournPly2, tournPly3, tournPly4) {
+  var game1Winner;
+  var game2Winner;
+  var tournWinner;
+  game1Winner = playGame(tournPly1, tournPly2, 1);
+  game2Winner = playGame(tournPly3, tournPly4, 1);
+  tournWinner = playGame(game1Winner, game2Winner, 2);
+  console.log(tournWinner.name + ' is the TOURNAMENT WINNER!!!!');
 
-function playTournament(ply1, ply2, ply3, ply4) {
-  var round1winner;
-  while (ply1.wins < 1 && ply2.wins < 1){
-    playRound(ply1, ply2);
-    if (ply1.wins === 1) {
-      round1winner = ply1;
-    } else { round1winner = ply2;
-    }
-  }
-  console.log('The first round winner is ' + round1winner.name + '.');
-  var round2winner;
-  while (ply3.wins < 1 && ply4.wins < 1){
-    playRound(ply3, ply4);
-    if (ply3.wins === 1) {
-      round2winner = ply3;
-    } else {
-      round2winner = ply4;
-    }
-  }
-  console.log('The second round winner is ' + round2winner.name + '.');
-  while (round1winner.wins < 2 && round2winner.wins < 2){
-    playRound(round1winner, round2winner);
-    if (round1winner.wins === 2) {
-      console.log(round1winner.name + ' is the tournament winner!');
-    } else {
-      console.log(round2winner.name + ' is the tournament winner!');
-    }
-  }
 }
 
 playTournament(player1, player2, player3, player4);
+
+//declares a function to play a tournament of 4 players.  Winners of the first round, play another round against each other
+
+// function playTournament(ply1, ply2, ply3, ply4) {
+//   var round1winner;
+//   while (ply1.wins < 1 && ply2.wins < 1){
+//     playRound(ply1, ply2);
+//     if (ply1.wins === 1) {
+//       round1winner = ply1;
+//     } else { round1winner = ply2;
+//     }
+//   }
+//   console.log('The first round winner is ' + round1winner.name + '.');
+//   var round2winner;
+//   while (ply3.wins < 1 && ply4.wins < 1){
+//     playRound(ply3, ply4);
+//     if (ply3.wins === 1) {
+//       round2winner = ply3;
+//     } else {
+//       round2winner = ply4;
+//     }
+//   }
+//   console.log('The second round winner is ' + round2winner.name + '.');
+//   while (round1winner.wins < 2 && round2winner.wins < 2){
+//     playRound(round1winner, round2winner);
+//     if (round1winner.wins === 2) {
+//       console.log(round1winner.name + ' is the tournament winner!');
+//     } else {
+//       console.log(round2winner.name + ' is the tournament winner!');
+//     }
+//   }
+// }
+//
+// playTournament(player1, player2, player3, player4);
