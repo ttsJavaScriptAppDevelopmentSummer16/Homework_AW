@@ -1,3 +1,13 @@
+var greetingElement =  document.getElementById("greeting");
+
+function greetOnLoad () {
+    var name = prompt("Hi! What's your name?");
+    greetingElement.innerHTML= "Hello " + name + ", it's nice to meet you!";
+}
+
+greetOnLoad();
+
+
 
 var hand = ['rock', 'paper', 'scissors'];
 
@@ -100,10 +110,20 @@ function playTournament(tournPly1, tournPly2, tournPly3, tournPly4) {
   game2Winner = playGame(tournPly3, tournPly4, 1);
   tournWinner = playGame(game1Winner, game2Winner, 2);
   console.log(tournWinner.name + ' is the TOURNAMENT WINNER!!!!');
+  return tournWinner.name;
 
 }
 
-playTournament(player1, player2, player3, player4);
+//playTournament(player1, player2, player3, player4);
+
+function postResults() {
+    var winner = playTournament(player1, player2, player3, player4);
+    var myelement = document.getElementById("results");
+    myelement.innerHTML= "The winner of the tournament is" + " " + winner + "!!!!";
+}
+
+postResults();
+
 
 //declares a function to play a tournament of 4 players.  Winners of the first round, play another round against each other
 
